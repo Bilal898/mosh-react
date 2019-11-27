@@ -3,7 +3,7 @@ import { getMovies} from '../services/fakeMovieService'
 export default class Movie extends Component {
 
     state = {
-        movies: getMovies(),
+        movies: [getMovies(), liked]
         
     }
 
