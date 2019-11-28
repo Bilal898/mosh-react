@@ -11,7 +11,8 @@ export default class Movies extends Component {
         movies: getMovies(),
         pageSize: 4,
         currentPage: 1,
-        genres: getGenres()
+        genres: getGenres(),
+        selectedGenre: -1
     }
 
     handleDelete = (movie) => {
@@ -31,14 +32,28 @@ export default class Movies extends Component {
         this.setState({ movies })
     }
     handlePageChange = page => {
-        console.log('page', page);
+        // console.log('page', page);
         this.setState({
             currentPage: page
         })    
     }
+
+    handleGenreChange = (genre) => {
+        // console.log('genre', genre);
+        const allMovies = this.state.movies
+        let filterMovies = allMovies.filter(m => m.genre === genre.name)
+        this.setState({
+            selectedGenre: genre._id,
+            movies: filterMovies
+            
+        })
+        console.log(this.state);
+
+        
+    }
     render() {
         const  count  = this.state.movies.length
-        const { pageSize, currentPage, movies: allMovies } = this.state
+        const { pageSize, currentPage, movies: allMovies, genres: allGenres } = this.state
         if(count === 0) 
             return <p>There are no movies in the database</p>
         
@@ -48,7 +63,9 @@ export default class Movies extends Component {
             <div className="row">
                 <div className="col-sm">
                         
-                    <Genres />
+                    <Genres 
+                    onClick={this.handleGenreChange}
+                    allGenres={allGenres}/>
                 </div>
                 <div className="col-sm">
                     <p>Showing {count} movies in the database</p>
