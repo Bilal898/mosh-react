@@ -10,6 +10,7 @@ import NotFound from './components/notFound';
 import { MovieForm } from './components/movieForm';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
+import NewMovieForm from './components/newMovieForm';
 
 class App extends Component{
   
@@ -20,13 +21,14 @@ class App extends Component{
         <NavBar />
           <main className="container">
             <Switch>
-              <Route path="/customers" component={Customers} />
-              <Route path="/login" component={LoginForm} />
-              <Route path="/register" component={RegisterForm} />
-              <Route path="/rentals" component={Rentals} />
-              <Route path="/movies/:id" component={MovieForm} />
-              <Route path="/movies" component={Movies} />
-              <Route path="/not-found" component={NotFound} />
+              <Route exact path="/customers" component={Customers} />
+              <Route exact path="/login" component={LoginForm} />
+              <Route exact path="/register" component={RegisterForm} />
+              <Route exact path="/rentals" component={Rentals} />
+              <Route exact path="/movies/new" component={NewMovieForm} />
+              <Route exact path="/movies/:id" component={MovieForm} />
+              <Route exact path="/movies" component={Movies} />
+              <Route exact path="/not-found" component={NotFound} />
               <Redirect from="/" exact to="/movies" />
               <Redirect to="/not-found" />
             </Switch>
