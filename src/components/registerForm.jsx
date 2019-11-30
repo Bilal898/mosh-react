@@ -6,13 +6,13 @@ export default class RegisterForm extends Form {
 
 
     state = {
-        data: { username: '', password: ''},
+        data: { username: '', password: '', name:''},
         errors: {}
     }
 
     schema = {
         username: Joi.string().required().label("Username"),
-        password: Joi.string().required().label("Password"),
+        password: Joi.string().required().min(5).label("Password"),
         name: Joi.string().required().label("Name")
     }
 
